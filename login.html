@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture Market - Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Picture Market</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+   
+    <section class="login">
+        <h2>Sign Up or Log In</h2>
+        <button onclick="signup()">Sign Up</button>
+        <button onclick="login()">Log In</button>
+        <p id="message"></p>
+    </section>
+   
+    <footer>
+        <p>Made by me in high school &copy; 2025</p>
+    </footer>
+   
+    <script>
+        let username = "";
+        let password = "";
+
+        function signup() {
+            username = prompt("Enter a username:");
+            password = prompt("Enter a password:");
+            document.getElementById("message").innerText = "Sign up successful! Use these to log in.";
+        }
+
+        function login() {
+            let enteredUsername = prompt("Enter your username:");
+            let enteredPassword = prompt("Enter your password:");
+            if (enteredUsername === username && enteredPassword === password) {
+                document.getElementById("message").innerText = "Login successful! Welcome to Picture Market!";
+            } else {
+                document.getElementById("message").innerText = "Login failed. Try again or sign up.";
+            }
+        }
+    </script>
+</body>
+</html>
