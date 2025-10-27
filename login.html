@@ -3,51 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Picture Market - Login</title>
+    <title>Picture Market – Login</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Picture Market</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </nav>
+    <header class="site-header">
+        <div class="container">
+            <h1>Picture Market</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-   
-    <section class="login">
-        <h2>Sign Up or Log In</h2>
-        <button onclick="signup()">Sign Up</button>
-        <button onclick="login()">Log In</button>
-        <p id="message"></p>
-    </section>
-   
-    <footer>
-        <p>Made by me in high school &copy; 2025</p>
+
+    <main class="container">
+        <section class="login-section">
+            <h2>Sign Up or Log In</h2>
+
+            <div class="form-box">
+                <h3>Sign Up</h3>
+                <form id="signupForm">
+                    <input type="text" id="suUser" placeholder="Username" required>
+                    <input type="password" id="suPass" placeholder="Password" required>
+                    <button type="submit">Create Account</button>
+                </form>
+            </div>
+
+            <div class="form-box">
+                <h3>Log In</h3>
+                <form id="loginForm">
+                    <input type="text" id="liUser" placeholder="Username" required>
+                    <input type="password" id="liPass" placeholder="Password" required>
+                    <button type="submit">Log In</button>
+                </form>
+            </div>
+
+            <p id="msg" class="message"></p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Made by me in high-school – © 2025</p>
+        </div>
     </footer>
-   
+
     <script>
-        let username = "";
-        let password = "";
+        
+        let savedUser = "";
+        let savedPass = "";
 
-        function signup() {
-            username = prompt("Enter a username:");
-            password = prompt("Enter a password:");
-            document.getElementById("message").innerText = "Sign up successful! Use these to log in.";
-        }
+        document.getElementById("signupForm").addEventListener("submit", e => {
+            e.preventDefault();
+            savedUser = document.getElementById("suUser").value.trim();
+            savedPass = document.getElementById("suPass").value;
+            document.getElementById("msg").textContent = "Account created! You can now log in.";
+            e.target.reset();
+        });
 
-        function login() {
-            let enteredUsername = prompt("Enter your username:");
-            let enteredPassword = prompt("Enter your password:");
-            if (enteredUsername === username && enteredPassword === password) {
-                document.getElementById("message").innerText = "Login successful! Welcome to Picture Market!";
+        document.getElementById("loginForm").addEventListener("submit", e => {
+            e.preventDefault();
+            const user = document.getElementById("liUser").value.trim();
+            const pass = document.getElementById("liPass").value;
+            if (user === savedUser && pass === savedPass && savedUser !== "") {
+                document.getElementById("msg").textContent = `Welcome, ${user}!`;
             } else {
-                document.getElementById("message").innerText = "Login failed. Try again or sign up.";
+                document.getElementById("msg").textContent = "Wrong username or password. Sign up first.";
             }
-        }
+            e.target.reset();
+        });
     </script>
 </body>
 </html>
